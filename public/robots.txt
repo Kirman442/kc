@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /kc/
+Sitemap: https://kirman442.github.io/kc/sitemap.xml

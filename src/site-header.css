@@ -1,0 +1,20 @@
+/* Sticky positioning reserves the existing header height without a spacer or layout jump. */
+.site-top{height:0;scroll-margin:0}
+.site-header{position:sticky;top:0;z-index:15;border-bottom:1px solid var(--line);transition:transform .25s ease,visibility .25s;isolation:isolate}
+.site-header-hidden{transform:translateY(-100%);pointer-events:none}
+.projects-dropdown{position:relative}
+.projects-trigger{display:flex;align-items:center;gap:8px;min-height:32px;padding:0;border:0;background:transparent;color:inherit;font-size:13px}
+.projects-trigger:hover,.projects-trigger[aria-expanded=true]{color:var(--accent)}
+.projects-trigger.projects-current{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:8px;color:var(--accent)}
+.projects-chevron{font-size:15px;text-decoration:none;transition:transform .15s}
+.projects-trigger[aria-expanded=true] .projects-chevron{transform:rotate(180deg)}
+.projects-panel{position:absolute;right:0;top:100%;width:max-content;max-width:calc(100vw - 44px);padding-top:18px;filter:drop-shadow(0 12px 18px #23332d18)}
+.projects-panel[hidden]{display:none}
+.projects-panel ul{list-style:none;padding:8px 0;margin:0;background:var(--paper);border:1px solid var(--line);border-top:0;max-height:calc(100dvh - 190px);overflow-y:auto;overscroll-behavior:contain}
+.header-inner nav .projects-panel a{font-size:12px;line-height:1.5;min-height:39px;padding:9px 18px;gap:20px;text-decoration:none}
+.header-inner nav .projects-panel a:hover,.header-inner nav .projects-panel a:focus-visible{background:var(--water);color:var(--accent)}
+.header-inner nav .projects-panel a:focus-visible{outline-offset:-3px}
+.header-inner nav .projects-panel a[aria-current]{background:var(--paper-deep);font-weight:600;text-decoration:none}
+.header-inner nav .projects-overview{justify-content:space-between;background:var(--paper-deep);border:1px solid var(--line);color:var(--accent)}
+@media(max-width:700px){.projects-trigger{font-size:12px}.projects-panel{left:0;right:auto;padding-top:14px}.projects-panel ul{max-height:calc(100dvh - 225px)}}
+@media(prefers-reduced-motion:reduce){.site-header,.projects-chevron{transition:none}}

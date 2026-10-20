@@ -1,0 +1,42 @@
+import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';
+import {JSDOM,VirtualConsole} from 'jsdom';import {siteRoutes} from '../src/routes.js';
+import {siteConfig} from '../site.config.mjs';
+const root=path.resolve(import.meta.dirname,'..'),dist=path.join(root,'dist');
+const checks=[];
+for(const route of siteRoutes){
+ const filename=path.join(dist,route.path==='/'?'index.html':route.path.slice(1)+'/index.html');
+ const html=fs.readFileSync(filename,'utf8'),errors=[];
+ const console=new VirtualConsole();console.on('error',(...args)=>errors.push(args.join(' ')));console.on('jsdomError',error=>errors.push(error.message));
+ const dom=new JSDOM(html,{url:siteConfig.origin+siteConfig.base+route.path.slice(1),runScripts:'outside-only',pretendToBeVisual:true,virtualConsole:console});
+ const {window}=dom;window.matchMedia=()=>({matches:false,addEventListener(){},removeEventListener(){}});
+ window.HTMLElement.prototype.scrollIntoView=()=>{};
+ const matches=window.HTMLElement.prototype.matches;
+ window.HTMLElement.prototype.matches=function(selector){return selector===':modal'?this.dataset.modal==='true':matches.call(this,selector);};
+ window.HTMLDialogElement.prototype.showModal=function(){this.open=true;this.dataset.modal='true';};
+ window.HTMLDialogElement.prototype.close=function(){this.open=false;delete this.dataset.modal;};
+ const before=window.document.querySelector('h1').textContent;
+ const scriptUrl=window.document.querySelector('script[type=module]').getAttribute('src');
+ assert.ok(scriptUrl.startsWith(siteConfig.base),'Client script escapes site base');
+ const script=fs.readFileSync(path.join(dist,scriptUrl.slice(siteConfig.base.length)),'utf8');
+ window.eval(script);await new Promise(resolve=>setTimeout(resolve,60));
+ assert.equal(window.document.querySelector('h1').textContent,before,route.path+' changed route during hydration');
+ assert.deepEqual(errors,[],route.path+' client errors');
+ assert.equal(window.document.body.style.overflow,'');
+ if(route.path==='/'){
+  assert.equal(window.document.querySelectorAll('.home-project-card').length,9);
+  const button=[...window.document.querySelectorAll('.project-filters button')].find(item=>item.textContent==='3D & Geodaten');button.click();await new Promise(resolve=>setTimeout(resolve,20));
+  assert.equal(window.document.querySelector('.project-count').textContent,'1 Projekt');
+  const trigger=window.document.querySelector('.projects-trigger');trigger.click();await new Promise(resolve=>setTimeout(resolve,20));
+  assert.equal(window.document.querySelector('.projects-panel').hidden,false);assert.equal(window.document.querySelectorAll('.projects-panel li').length,10);
+ }
+ if(route.path==='/projects/ladeinfrastruktur'){
+  const frame=window.document.querySelector('iframe');window.document.querySelector('.embed-actions button').click();await new Promise(resolve=>setTimeout(resolve,20));
+  assert.equal(window.document.querySelector('iframe'),frame);assert.equal(window.document.body.style.overflow,'hidden');
+  window.document.querySelector('dialog').dispatchEvent(new window.KeyboardEvent('keydown',{key:'Escape',bubbles:true,cancelable:true}));await new Promise(resolve=>setTimeout(resolve,20));
+  assert.equal(window.document.querySelector('iframe'),frame);assert.equal(window.document.body.style.overflow,'');
+ }
+ assert.deepEqual(errors,[],route.path+' interaction errors');
+ checks.push({path:route.path,hydration:'passed'});dom.window.close();
+}
+fs.mkdirSync(path.join(root,'.build'),{recursive:true});fs.writeFileSync(path.join(root,'.build/client-check.json'),JSON.stringify({environment:'Production JavaScript in jsdom; no GPU, external apps or visual layout checks',checks},null,2)+'\n');
+console.log(`Production client hydration passed for ${checks.length} pages; catalogue/menu/full-screen interactions passed.`);process.exit(0);

@@ -1,0 +1,7 @@
+import { siteUrl } from "./site-paths.js";import React, { useRef, useState } from 'react';
+export default function ImageComparison({ first, second }) {
+  const [position, setPosition] = useState(50);
+  const frame = useRef(null);
+  function update(event) {const rect = frame.current.getBoundingClientRect();setPosition(Math.max(0, Math.min(100, (event.clientX - rect.left) / rect.width * 100)));}
+  return <figure className="image-comparison"><div className="comparison-frame" ref={frame} onPointerDown={(event) => {if (event.button !== 0) return;event.currentTarget.setPointerCapture(event.pointerId);update(event);}} onPointerMove={(event) => {if (event.currentTarget.hasPointerCapture(event.pointerId)) update(event);}} onPointerUp={(event) => {if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);}}><img src={siteUrl(second.src)} alt={second.alt} draggable={false} /><img className="comparison-overlay" src={siteUrl(first.src)} alt={first.alt} draggable={false} style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }} /><span className="comparison-divider" aria-hidden="true" style={{ left: position + '%' }}><span>↔</span></span></div><figcaption><span>Schema</span><span>Geografische Lage</span></figcaption><label className="comparison-control">Karten vergleichen<input type="range" min="0" max="100" value={position} onChange={(event) => setPosition(Number(event.target.value))} /></label></figure>;
+}
