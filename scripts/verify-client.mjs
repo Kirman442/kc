@@ -24,11 +24,13 @@ for(const route of siteRoutes){
  assert.deepEqual(errors,[],route.path+' client errors');
  assert.equal(window.document.body.style.overflow,'');
  if(route.path==='/'){
-  assert.equal(window.document.querySelectorAll('.home-project-card').length,9);
+  assert.equal(window.document.querySelectorAll('.home-project-card').length,10);
+  assert.equal(window.document.querySelector('.home-project-card').dataset.projectId,'energieatlas');
+  assert.equal(window.document.querySelector('.home-featured .featured-map').getAttribute('href'),'/kc/projects/ladeinfrastruktur');
   const button=[...window.document.querySelectorAll('.project-filters button')].find(item=>item.textContent==='3D & Geodaten');button.click();await new Promise(resolve=>setTimeout(resolve,20));
   assert.equal(window.document.querySelector('.project-count').textContent,'1 Projekt');
   const trigger=window.document.querySelector('.projects-trigger');trigger.click();await new Promise(resolve=>setTimeout(resolve,20));
-  assert.equal(window.document.querySelector('.projects-panel').hidden,false);assert.equal(window.document.querySelectorAll('.projects-panel li').length,10);
+  assert.equal(window.document.querySelector('.projects-panel').hidden,false);assert.equal(window.document.querySelectorAll('.projects-panel li').length,11);
  }
  if(route.path==='/projects/ladeinfrastruktur'){
   const frame=window.document.querySelector('iframe');window.document.querySelector('.embed-actions button').click();await new Promise(resolve=>setTimeout(resolve,20));

@@ -1,4 +1,5 @@
 const catalogue = [
+  { id:'energieatlas', title:'EnergieAtlas', category:'Web-GIS', year:'2026', image:'/assets/energieatlas-aerial-coast-v1.png', href:'/projects/energieatlas', description:'Solar- und Windenergie in Deutschland: Anlagenbestand, regionale Vergleiche und modelliertes Dachpotenzial auf unterschiedlichen Maßstabsebenen untersuchen.', tools:'Python / React / TypeScript / MapLibre / ECharts' },
   { id:'mobile', title:'MobileNetwork', category:'Web-GIS', year:'2025 / 2026', image:'/assets/mobile-network.webp', href:'/projects/mobile-network', description:'Über eine Million Tile-Datensätze im Browser. Eine Geschichte über Formate, Verarbeitung und interaktive Karten.', tools:'React / deck.gl / Arrow', featuredHeading:['Große Daten.','Neue Wege zur Karte.'],featuredCaption:'Web-GIS / 42 Länder' },
   { id:'accidents', title:'Unfallkarte Deutschland', category:'Web-GIS', year:'2025', image:'/assets/accidents.webp', href:'/projects/accidents', description:'Verkehrsunfälle sichtbar machen und räumliche Muster erkunden.', tools:'React / Supabase / deck.gl' },
   { id:'unfallatlas', title:'Unfallatlas Deutschland', category:'Web-GIS', year:'2026', image:'/assets/hero-real-world-to-data-v1.webp', href:'/projects/unfallatlas', description:'Von der Unfallkarte zum Analysewerkzeug: Regionen, Zeiträume, Bedingungen und Beteiligte vergleichen.', tools:'React / deck.gl / MapLibre / Arrow', imageStyle:'polaroid',imagePosition:'68% center' },
@@ -13,6 +14,7 @@ const catalogue = [
 
 // Publication dates control the homepage chronology; article-navigation order stays explicit.
 const presentation={
+ energieatlas:{publishedAt:'2026-11-01',polaroidTilt:0,printCaption:'EnergieAtlas',heroLabel:'Energie',heroCaption:'Sonne, Wind und Regionen',imagePosition:'60% top'},
  mobile:{publishedAt:'2025-04-27',polaroidTilt:3,printCaption:'MobileNetwork'},
  accidents:{publishedAt:'2025-03-30',polaroidTilt:-3.5,printCaption:'Unfallkarte'},
  unfallatlas:{publishedAt:'2026-10-19',polaroidTilt:2.5,printCaption:'Unfallatlas',heroLabel:'Analyse'},
@@ -26,8 +28,6 @@ const presentation={
 };
 export const homeFeaturedProjectId='charging';
 export const projects=catalogue.map(project=>({...project,...presentation[project.id],featured:project.id===homeFeaturedProjectId}));
-// EnergieAtlas is published as a standalone story; only its hero polaroid is shown on the homepage.
-const heroOnlyProjects=[{id:'energieatlas',title:'EnergieAtlas',category:'Web-GIS',year:'2026',publishedAt:'2026-11-01',image:'/assets/energieatlas-aerial-coast-v1.png',href:'/projects/energieatlas',heroLabel:'Energie',heroCaption:'Sonne, Wind und Regionen',imagePosition:'60% top'}];
 export const homeHero={mode:'selected',projectIds:['art','energieatlas','unfallatlas']};
 export function chronologicalProjects(items=projects){
  return [...items].sort((a,b)=>{
@@ -37,7 +37,7 @@ export function chronologicalProjects(items=projects){
  });
 }
 export function heroProjects(config=homeHero){
- const items=config.mode==='latest'?chronologicalProjects(projects.filter(project=>!project.pending)).reverse():[...new Set(config.projectIds)].map(id=>[...projects,...heroOnlyProjects].find(project=>project.id===id)).filter(Boolean);
+ const items=config.mode==='latest'?chronologicalProjects(projects.filter(project=>!project.pending)).reverse():[...new Set(config.projectIds)].map(id=>projects.find(project=>project.id===id)).filter(Boolean);
  return items.slice(0,3);
 }
 export function newestProjects(items=projects){return chronologicalProjects(items).reverse();}
