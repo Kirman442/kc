@@ -27,7 +27,7 @@ export default function ClusteringArticle() {return <div className="mobile-netwo
                                 Nutzungsstatus, aber kein Feld, in welchem Bundesland sich der Turm befindet. Vielleicht
                                 brauchen wir es für weitere
                                 Analysen. Und natürlich das Feld mit der Geometrie.</p>
-      <AppendixLink target="appendix-note-1" origin="article-note-1">Ausgangsdaten als GeoJSON — Python-Code</AppendixLink>
+      <AppendixLink target="appendix-note-1" origin="article-note-1">Ausgangsdaten als GeoJSON - Python-Code</AppendixLink>
       <p>
                                 Zuerst dachte ich, es wäre eine gute Idee, den Datensatz nach deutschen Städten zu filtern und
                                 gleichzeitig ein neues
@@ -36,12 +36,12 @@ export default function ClusteringArticle() {return <div className="mobile-netwo
                                 Zeitpunkt 2024 bereits 2056 umfasste und in der eine Korrelation der Stadt des entsprechenden
                                 Bundeslandes vorhanden
                                 war.</p>
-      <AppendixLink target="appendix-note-2" origin="article-note-2">Städte zu Bundesländern zuordnen — Python-Code</AppendixLink>
+      <AppendixLink target="appendix-note-2" origin="article-note-2">Städte zu Bundesländern zuordnen - Python-Code</AppendixLink>
       <p>
                                 Ich filterte den ursprünglichen Datensatz nach den Städten, wobei ich ein neues Feld hinzufügte,
                                 und nun sieht das
                                 Objektverzeichnis wie folgt aus:</p>
-      <AppendixLink target="appendix-note-3" origin="article-note-3">Ergebnis der Zuordnung — Python-Code</AppendixLink>
+      <AppendixLink target="appendix-note-3" origin="article-note-3">Ergebnis der Zuordnung - Python-Code</AppendixLink>
       <p>
                                 Es hat alles geklappt, jetzt haben wir ein Feld "land_type", aber unerwartet habe ich
                                 herausgefunden, dass es in einigen
@@ -89,7 +89,7 @@ export default function ClusteringArticle() {return <div className="mobile-netwo
                                 Wir verknüpfen die Daten mit unserer neuen Liste von Funkmasten und schreiben das Ergebnis in
                                 eine neue geojson-Datei.
                             </p>
-      <AppendixLink target="appendix-note-4" origin="article-note-4">Räumliche Verknüpfung mit Deutschland — Python-Code</AppendixLink>
+      <AppendixLink target="appendix-note-4" origin="article-note-4">Räumliche Verknüpfung mit Deutschland - Python-Code</AppendixLink>
       <p>
                                 Es ist auf jeden Fall einfacher, genauer und schneller als die Suche nach den Grenzen einer
                                 Verwaltungseinheit, z. B.
@@ -107,7 +107,7 @@ export default function ClusteringArticle() {return <div className="mobile-netwo
                                 aus, von denen wir einige für die weitere Identifizierung benötigen. Der Parameter
                                 item_properties ermöglicht uns dies.
                             </p>
-      <AppendixLink target="appendix-note-5" origin="article-note-5">Den ArcGIS-Layer vorbereiten — Python-Code</AppendixLink>
+      <AppendixLink target="appendix-note-5" origin="article-note-5">Den ArcGIS-Layer vorbereiten - Python-Code</AppendixLink>
       <p>
                                 Dann müssen wir prüfen, ob eine solche Ebene bereits geladen ist oder nicht, damit wir sie im
                                 Falle einer
@@ -119,7 +119,7 @@ export default function ClusteringArticle() {return <div className="mobile-netwo
                                 Beim Überschreiben ist es wichtig, dass die Ebene dieselbe ID hat, da unsere Karte diese Ebene
                                 ständig verwenden wird.
                             </p>
-      <AppendixLink target="appendix-note-6" origin="article-note-6">Den Feature-Layer aktualisieren — Python-Code</AppendixLink>
+      <AppendixLink target="appendix-note-6" origin="article-note-6">Den Feature-Layer aktualisieren - Python-Code</AppendixLink>
       <p>
                                 Sobald die Geojson-Daten hochgeladen sind, werden sie automatisch als Feature Layer (gehostet)
                                 veröffentlicht und wir

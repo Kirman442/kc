@@ -48,7 +48,7 @@ export function SiteHeader({path=currentPath()}={}) {
     <div id="top" className="site-top" aria-hidden="true" />
     <header className={`site-header${hidden ? ' site-header-hidden' : ''}`} onFocusCapture={revealForFocus}>
       <div className="container header-inner">
-        <a className="identity" href={siteUrl("/home")} aria-label="Karten & Code — zur Projektübersicht"><span className="identity-symbol" aria-hidden="true"><span />K-C</span><span><strong>Karten & Code</strong><small>GIS & Webentwicklung</small></span></a>
+        <a className="identity" href={siteUrl("/home")} aria-label="Karten & Code - zur Projektübersicht"><span className="identity-symbol" aria-hidden="true"><span />K-C</span><span><strong>Karten & Code</strong><small>GIS & Webentwicklung</small></span></a>
         <nav aria-label="Hauptnavigation">
           <div className="projects-dropdown" onPointerEnter={(event) => {if (event.pointerType === 'mouse' || event.pointerType === 'pen') setMenuOpen(true);}} onPointerLeave={(event) => {if (event.pointerType !== 'touch') closeMenu();}} onBlur={(event) => {if (!event.currentTarget.contains(event.relatedTarget)) closeMenu();}} onKeyDown={onMenuKeyDown}>
             <button ref={trigger} type="button" className={`projects-trigger${path !== '/about' ? ' projects-current' : ''}`} aria-expanded={menuOpen} aria-controls="header-projects" onClick={() => setMenuOpen((value) => !value)}>Projekte <span className="projects-chevron" aria-hidden="true">⌄</span></button>

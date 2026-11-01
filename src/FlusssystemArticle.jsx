@@ -136,13 +136,13 @@ export default function FlusssystemArticle() {return <div className="mobile-netw
                                 hinzugefügt. Und ich habe eine
                                 Funktion für die Linienbreite geschrieben, die auf den Daten aus dieser Spalte basiert.
                             </p>
-      <AppendixLink target="appendix-note-1" origin="article-note-1">Linienbreite nach Einzugsgebietsfläche — Python-Code</AppendixLink>
+      <AppendixLink target="appendix-note-1" origin="article-note-1">Linienbreite nach Einzugsgebietsfläche - Python-Code</AppendixLink>
       <p>
                                 Wir können zusätzliche Daten aus anderen Spalten hinzufügen oder die Visualisierung nur auf der
                                 Grundlage anderer oben
                                 genannter Projektziele durchführen. Zum Beispiel so:
                             </p>
-      <AppendixLink target="appendix-note-2" origin="article-note-2">Flussabschnitte filtern — Python-Code</AppendixLink>
+      <AppendixLink target="appendix-note-2" origin="article-note-2">Flussabschnitte filtern - Python-Code</AppendixLink>
       <p>
                                 und erhalten ein völlig anderes Ergebnis.<br />
                                 Es mag so aussehen, als gäbe es zu viele Flüsse oder genauer gesagt, ein Flusssystem sieht
@@ -157,11 +157,11 @@ export default function FlusssystemArticle() {return <div className="mobile-netw
                                 darauf eine Farbpalette. In meinem Fall habe ich die 'Set2'-Palette aus den matplotlib-Colormaps
                                 verwendet.
                             </p>
-      <AppendixLink target="appendix-note-3" origin="article-note-3">Flusssysteme einfärben — Python-Code</AppendixLink>
+      <AppendixLink target="appendix-note-3" origin="article-note-3">Flusssysteme einfärben - Python-Code</AppendixLink>
       <p>
                                 Dann bereiten wir den Subplot vor und drucken sofort unser modifiziertes gdf.
                             </p>
-      <AppendixLink target="appendix-note-4" origin="article-note-4">Das Flusssystem zeichnen — Python-Code</AppendixLink>
+      <AppendixLink target="appendix-note-4" origin="article-note-4">Das Flusssystem zeichnen - Python-Code</AppendixLink>
       <h2 id="visualisierung">Visualisierung</h2>
       <p>
                                 Das ist alles, die Hauptarbeit ist getan, der Code ist sehr kurz, aber meiner Meinung nach

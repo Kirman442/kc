@@ -71,7 +71,7 @@ export default function KunstkartenArticle() {return <div className="mobile-netw
                                 Informationen zu erhalten. Es hängt auch davon ab,
                                 welche Entfernung für die Kartenausschnitte gewählt
                                 wird.</p>
-      <AppendixLink target="appendix-note-1" origin="article-note-1">Straßennetze laden — Python-Code</AppendixLink>
+      <AppendixLink target="appendix-note-1" origin="article-note-1">Straßennetze laden - Python-Code</AppendixLink>
       <p>
                                 Man kann auch einen benutzerdefinierten Filter
                                 verwenden - einen Filter, der anstelle des
@@ -92,7 +92,7 @@ export default function KunstkartenArticle() {return <div className="mobile-netw
                                 und die Breite der Linien an die Länge der
                                 Verkehrsnetzabschnitte anpassen.
                             </p>
-      <AppendixLink target="appendix-note-2" origin="article-note-2">Karte zeichnen — Python-Code</AppendixLink>
+      <AppendixLink target="appendix-note-2" origin="article-note-2">Karte zeichnen - Python-Code</AppendixLink>
       <p>
                                 Danach zeichnen wir die Karte mit dem Modul
                                 ox.plot_graph. Wir fügen eine Hintergrundfarbe und
@@ -150,7 +150,7 @@ export default function KunstkartenArticle() {return <div className="mobile-netw
                                 Problem. Wir müssen sie für uns noch ein wenig
                                 verfeinern und los geht's!
                             </p>
-      <AppendixLink target="appendix-note-3" origin="article-note-3">Koordinaten in DMS umwandeln — Python-Code</AppendixLink>
+      <AppendixLink target="appendix-note-3" origin="article-note-3">Koordinaten in DMS umwandeln - Python-Code</AppendixLink>
       <p>
                                 Die zweite Bibliothek zum Drucken von Text auf ein
                                 Bild. Dafür brauchen wir ttf-Fonts, ich habe sie von
@@ -159,12 +159,12 @@ export default function KunstkartenArticle() {return <div className="mobile-netw
                                 experimentieren, um alles schön zu machen, obwohl
                                 der Begriff der Schönheit für jeden anders ist :)
                             </p>
-      <AppendixLink target="appendix-note-4" origin="article-note-4">Schriftarten und Beschriftung — Python-Code</AppendixLink>
+      <AppendixLink target="appendix-note-4" origin="article-note-4">Schriftarten und Beschriftung - Python-Code</AppendixLink>
       <p>
                                 Überlagerung des Standortnames und der Koordinaten
                                 auf der Karte
                             </p>
-      <AppendixLink target="appendix-note-5" origin="article-note-5">Text und Karte zusammenführen — Python-Code</AppendixLink>
+      <AppendixLink target="appendix-note-5" origin="article-note-5">Text und Karte zusammenführen - Python-Code</AppendixLink>
       <p>
                                 Man wählt die Schriftarten aus, spielt mit ihrer
                                 Größe, Farbe und Transparenz, richtet sie in der

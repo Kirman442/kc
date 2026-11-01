@@ -26,7 +26,9 @@ const presentation={
 };
 export const homeFeaturedProjectId='charging';
 export const projects=catalogue.map(project=>({...project,...presentation[project.id],featured:project.id===homeFeaturedProjectId}));
-export const homeHero={mode:'selected',projectIds:['art','rivers','unfallatlas']};
+// EnergieAtlas is published as a standalone story; only its hero polaroid is shown on the homepage.
+const heroOnlyProjects=[{id:'energieatlas',title:'EnergieAtlas',category:'Web-GIS',year:'2026',publishedAt:'2026-11-01',image:'/assets/energieatlas-aerial-coast-v1.png',href:'/projects/energieatlas',heroLabel:'Energie',heroCaption:'Sonne, Wind und Regionen',imagePosition:'60% top'}];
+export const homeHero={mode:'selected',projectIds:['art','energieatlas','unfallatlas']};
 export function chronologicalProjects(items=projects){
  return [...items].sort((a,b)=>{
   const year=a.publishedAt.slice(0,4).localeCompare(b.publishedAt.slice(0,4));
@@ -35,7 +37,7 @@ export function chronologicalProjects(items=projects){
  });
 }
 export function heroProjects(config=homeHero){
- const items=config.mode==='latest'?chronologicalProjects(projects.filter(project=>!project.pending)).reverse():[...new Set(config.projectIds)].map(id=>projects.find(project=>project.id===id)).filter(Boolean);
+ const items=config.mode==='latest'?chronologicalProjects(projects.filter(project=>!project.pending)).reverse():[...new Set(config.projectIds)].map(id=>[...projects,...heroOnlyProjects].find(project=>project.id===id)).filter(Boolean);
  return items.slice(0,3);
 }
 export function newestProjects(items=projects){return chronologicalProjects(items).reverse();}

@@ -18,7 +18,8 @@ for(const route of siteRoutes){
  const scriptUrl=window.document.querySelector('script[type=module]').getAttribute('src');
  assert.ok(scriptUrl.startsWith(siteConfig.base),'Client script escapes site base');
  const script=fs.readFileSync(path.join(dist,scriptUrl.slice(siteConfig.base.length)),'utf8');
- window.eval(script);await new Promise(resolve=>setTimeout(resolve,60));
+ // Allow cold hydration and its initial hash-restoration effect to finish before clicks.
+ window.eval(script);await new Promise(resolve=>setTimeout(resolve,500));
  assert.equal(window.document.querySelector('h1').textContent,before,route.path+' changed route during hydration');
  assert.deepEqual(errors,[],route.path+' client errors');
  assert.equal(window.document.body.style.overflow,'');
@@ -34,6 +35,16 @@ for(const route of siteRoutes){
   assert.equal(window.document.querySelector('iframe'),frame);assert.equal(window.document.body.style.overflow,'hidden');
   window.document.querySelector('dialog').dispatchEvent(new window.KeyboardEvent('keydown',{key:'Escape',bubbles:true,cancelable:true}));await new Promise(resolve=>setTimeout(resolve,20));
   assert.equal(window.document.querySelector('iframe'),frame);assert.equal(window.document.body.style.overflow,'');
+ }
+ if(route.path==='/projects/energieatlas'){
+  const link=window.document.querySelector('.energy-article>.appendix-reference a');
+  const target=link.getAttribute('href').slice(1);link.click();await new Promise(resolve=>setTimeout(resolve,25));
+  assert.equal(window.document.querySelectorAll('.appendix-note-content:not([hidden])').length,1);
+  assert.equal(window.document.getElementById(target+'-content').hidden,false);
+  window.document.querySelector('.appendix-introduction .appendix-return').click();await new Promise(resolve=>setTimeout(resolve,25));
+  assert.equal(window.document.querySelectorAll('.appendix-note-content:not([hidden])').length,0);
+  assert.equal(window.document.activeElement.id,link.id);
+  assert.equal(window.document.querySelector('.embed-actions a').textContent,'Separat öffnen ↗');
  }
  assert.deepEqual(errors,[],route.path+' interaction errors');
  checks.push({path:route.path,hydration:'passed'});dom.window.close();

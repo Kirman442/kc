@@ -7,6 +7,7 @@ import ProjectPage from './ProjectPage.jsx';
 import LadeinfrastrukturPage from './LadeinfrastrukturPage.jsx';
 import UnfallatlasTrial from './UnfallatlasTrial.jsx';
 import LegalPage from './LegalPage.jsx';
+import EnergieatlasPage from './EnergieatlasPage.jsx';
 import {LocaleProvider} from './locale.jsx';
 import {currentPath,siteUrl} from './site-paths.js';
 import {siteRoutes,legacyRoutes} from './routes.js';
@@ -23,6 +24,7 @@ export function App({pathname=currentPath()}){
   else if(route.kind==='charging')page=<LadeinfrastrukturPage/>;
   else if(route.kind==='unfallatlas')page=<UnfallatlasTrial/>;
   else if(route.kind==='legal')page=<LegalPage type={route.legalType}/>;
+  else if(route.kind==='energieatlas')page=<EnergieatlasPage/>;
   else page=<ProjectPage projectId={route.projectId}/>;
   return <LocaleProvider locale={route?.lang||'de'}><a className="skip-link" href="#main">Zum Inhalt</a><SiteHeader path={path}/><main id="main">{page}</main><Footer/></LocaleProvider>;
 }

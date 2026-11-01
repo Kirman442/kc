@@ -203,7 +203,7 @@ export default {
       "blocks": [
         {
           "type": "paragraph",
-          "text": "Parquet wird bei der Aufbereitung und für das Archiv verwendet. An den Browser werden Arrow-IPC-Dateien mit äußerer Brotli-Kompression ausgeliefert. Das veröffentlichte Paket enthält 96 Unfalldateien — sechs Jahre mit jeweils 16 Bundesländern — sowie eine Arrow-Datei mit den Pkw-Beständen. Vorberechnete Auswertungen und Angaben zum Datenbestand liegen zusätzlich als JSON vor."
+          "text": "Parquet wird bei der Aufbereitung und für das Archiv verwendet. An den Browser werden Arrow-IPC-Dateien mit äußerer Brotli-Kompression ausgeliefert. Das veröffentlichte Paket enthält 96 Unfalldateien - sechs Jahre mit jeweils 16 Bundesländern - sowie eine Arrow-Datei mit den Pkw-Beständen. Vorberechnete Auswertungen und Angaben zum Datenbestand liegen zusätzlich als JSON vor."
         },
         {
           "type": "paragraph",
@@ -414,7 +414,7 @@ export default {
             "[Beschreibung und Zugang zum amtlichen Atlas](https://www.statistikportal.de/de/karten/unfallatlas)"
           ],
           [
-            "Unfallatlas — Datensatzbeschreibung",
+            "Unfallatlas - Datensatzbeschreibung",
             "Felder, Kategorien, Beteiligungsmerkmale und Grenzen des Ausgangsdatensatzes",
             "[DSB_Unfallatlas.pdf](https://www.opengeodata.nrw.de/produkte/transport_verkehr/unfallatlas/DSB_Unfallatlas.pdf)"
           ],
@@ -533,12 +533,12 @@ export default {
             "[Netlify Edge Functions](https://docs.netlify.com/build/edge-functions/overview/)"
           ],
           [
-            "Supabase / PostgreSQL / PostGIS — Vorgängerversion",
+            "Supabase / PostgreSQL / PostGIS - Vorgängerversion",
             "Ursprüngliches Experiment mit Karte und Datenbankabfragen; kein Backend der heutigen Dateiversion",
             "[Supabase](https://supabase.com/docs), [PostGIS](https://postgis.net/documentation/)"
           ],
           [
-            "parquet-wasm — untersuchte Varianten",
+            "parquet-wasm - untersuchte Varianten",
             "Parquet-Dekodierung beim Erproben der Dateivarianten; nicht Bestandteil des veröffentlichten Arrow-Pakets",
             "[parquet-wasm](https://kylebarron.dev/parquet-wasm/)"
           ]
@@ -552,11 +552,11 @@ export default {
       {
         "type": "list",
         "items": [
-          "**Kirill Lisochenko** — Idee und Umsetzung des Projekts: ursprüngliche Karte, analytische Fragestellungen, Recherche und Aufbereitung der Daten, Gestaltung, Prüfung von Oberfläche und Ergebnissen sowie die abschließenden Entscheidungen.",
-          "**OpenAI Codex** — Unterstützung bei Architekturuntersuchungen, Prototypen, Datenaufbereitung, Implementierung, Tests und Dokumentation. Die Entscheidungen und die Abnahme lagen beim Projektverantwortlichen.",
-          "**Statistische Ämter des Bundes und der Länder, Destatis, KBA und BKG** — amtliche Daten, Klassifikationen und methodische Unterlagen.",
-          "**CARTO und OpenStreetMap contributors** — Grundkarten und kartografische Daten; die erforderlichen Quellenangaben erscheinen auch direkt auf der Karte.",
-          "**Entwicklerinnen, Entwickler und Open-Source-Communities** — Apache Arrow, vis.gl/deck.gl, MapLibre, React, die verwendeten Python-Bibliotheken und Vite als Grundlage der Aufbereitung und Anwendung."
+          "**Kirill Lisochenko** - Idee und Umsetzung des Projekts: ursprüngliche Karte, analytische Fragestellungen, Recherche und Aufbereitung der Daten, Gestaltung, Prüfung von Oberfläche und Ergebnissen sowie die abschließenden Entscheidungen.",
+          "**OpenAI Codex** - Unterstützung bei Architekturuntersuchungen, Prototypen, Datenaufbereitung, Implementierung, Tests und Dokumentation. Die Entscheidungen und die Abnahme lagen beim Projektverantwortlichen.",
+          "**Statistische Ämter des Bundes und der Länder, Destatis, KBA und BKG** - amtliche Daten, Klassifikationen und methodische Unterlagen.",
+          "**CARTO und OpenStreetMap contributors** - Grundkarten und kartografische Daten; die erforderlichen Quellenangaben erscheinen auch direkt auf der Karte.",
+          "**Entwicklerinnen, Entwickler und Open-Source-Communities** - Apache Arrow, vis.gl/deck.gl, MapLibre, React, die verwendeten Python-Bibliotheken und Vite als Grundlage der Aufbereitung und Anwendung."
         ]
       },
       {
@@ -572,7 +572,7 @@ export default {
         ],
         "rows": [
           [
-            "[Accidents — das Vorgängerprojekt](https://kirman442.github.io/gis/portfolio/Accidents)",
+            "[Accidents - das Vorgängerprojekt](https://kirman442.github.io/gis/portfolio/Accidents)",
             "Ausgangspunkt der Idee und erste Erfahrungen mit schneller Darstellung und Filterung"
           ],
           [
