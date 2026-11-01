@@ -2,6 +2,7 @@ import { siteUrl } from "./site-paths.js";import React from 'react';
 import Code from './CodeBlock.jsx';
 import MapEmbed from './MapEmbed.jsx';
 import { AppendixProvider, AppendixLink, TechnicalAppendix, AppendixSection } from './TechnicalAppendix.jsx';
+import ProjectSources from './ProjectSources.jsx';
 import './full-article.css';
 
 const originalCode = 'https://github.com/Kirman442/mobile-network-map/tree/c45c2e86145b8409efae4f45388d39444a0d8c05';
@@ -50,8 +51,8 @@ function Comparison({ caption, headers, rows }) {
 }
 function ResourceList({ items }) {
   return <dl className="mobile-network-resources text-medium text-dark-gray">
-        {items.map(({ name, description, href }) => <div className="mobile-network-resource" key={name}>
-            <dt className="datenquelle">{href ? <ExternalLink href={siteUrl(href)}>{name} ↗</ExternalLink> : name}</dt>
+        {items.map(({ name, description, href }) => <div className="mobile-network-resource" key={typeof name==='string'?name:description}>
+            <dt >{href ? <ExternalLink href={siteUrl(href)}>{name}</ExternalLink> : name}</dt>
             <dd>{description}</dd>
         </div>)}
     </dl>;
@@ -73,7 +74,7 @@ const projectTools = [
 const documentation = [
 { name: 'Apache Arrow', description: 'Numeric buffer layout and the IPC format.', href: 'https://arrow.apache.org/docs/format/Columnar.html' },
 { name: 'Apache Arrow JavaScript', description: 'JavaScript API for tables, vectors and IPC readers.', href: 'https://arrow.apache.org/js/current/' },
-{ name: 'deck.gl', description: <><ExternalLink href={siteUrl("https://deck.gl/docs/developer-guide/performance#use-binary-data")}>Binary data and performance</ExternalLink> · <ExternalLink href={siteUrl("https://deck.gl/docs/api-reference/layers/scatterplot-layer")}>ScatterplotLayer</ExternalLink></> },
+{ name: <><ExternalLink href="https://deck.gl/docs/developer-guide/performance#use-binary-data">deck.gl: binary data and performance</ExternalLink> · <ExternalLink href="https://deck.gl/docs/api-reference/layers/scatterplot-layer">ScatterplotLayer</ExternalLink></>, description: 'Binary attributes, rendering performance and point-layer configuration.' },
 { name: 'MDN: hardware concurrency', description: 'Browser-reported logical processors and the limits of using that value to size a worker pool.', href: 'https://developer.mozilla.org/en-US/docs/Web/API/Navigator/hardwareConcurrency' },
 { name: 'MDN: transferable objects', description: 'Buffer ownership transfer and detachment of the sender’s ArrayBuffer.', href: 'https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Transferable_objects' },
 { name: 'Ookla Open Data', description: 'Source of mobile network performance aggregated into tiles.', href: 'https://github.com/teamookla/ookla-open-data' },
@@ -92,7 +93,7 @@ const documentation = [
 
 
 const projectCredits = [
-{ name: 'Kirill Lisochenko', description: 'Project author: concept, original application, data preparation, visual design, testing and final decisions.' },
+{ name: 'Kirill Lisochenko', description: 'Project author: concept, original application, data preparation, visual design, testing.' },
 { name: 'OpenAI Codex', description: 'AI coding assistant: architecture analysis, Arrow/Parquet prototyping, implementation of optimizations and assistance with testing and documentation.' },
 { name: 'Kyle Barron', description: 'Technical inspiration through public articles and examples on Arrow, GeoParquet, WebAssembly and deck.gl.' },
 { name: 'Open-source maintainers', description: 'The Apache Arrow, vis.gl, MapLibre, React, D3 and Vite communities provide the libraries used by the application.' },
@@ -244,16 +245,16 @@ export default function FullArticle() {
     </div></AppendixProvider>;
 }
 
-export function SourcesSection() {return <div className="mobile-network-article source-catalog" lang="en"><h2 id="sources">Sources and documentation</h2>
-        <div className="resource-section"><div className="resource-heading"><span className="eyebrow">Reference index / 01</span><h3>Packages, libraries and services</h3></div>
-        <ResourceList items={projectTools} /></div>
-        <div className="resource-section credits-section"><div className="resource-heading"><span className="eyebrow">Contributions / 02</span><h3>Project credits</h3></div>
-        <ResourceList items={projectCredits} /></div>
-        <details className="mobile-network-documentation">
-            <summary className="alt-font text-green">Documentation and background reading</summary>
-            <section className="documentation-group"><h4>Data and basemaps</h4><ResourceList items={documentation.filter((item) => ["Ookla Open Data", "CARTO", "GeoJSON", "GeoPackage"].includes(item.name))} /></section>
-      <section className="documentation-group"><h4>Arrow, geometry and memory</h4><ResourceList items={documentation.filter((item) => ["Apache Arrow", "Apache Arrow JavaScript", "GeoArrow", "MDN: transferable objects", "MDN: cross-origin isolation"].includes(item.name))} /></section>
-      <section className="documentation-group"><h4>Rendering, workers and delivery</h4><ResourceList items={documentation.filter((item) => ["deck.gl", "MDN: hardware concurrency", "Netlify Edge Functions API", "Leaflet", "OpenLayers", "MapLibre"].includes(item.name))} /></section>
-      <section className="documentation-group"><h4>Articles and inspiration</h4><ResourceList items={documentation.filter((item) => ["Kyle Barron", "Kyle Barron: GeoParquet", "Kyle Barron: GeoArrow"].includes(item.name))} /></section>
-        </details>
-  </div>;}
+export function SourcesSection() {
+  const dataNames=['Ookla Open Data','CARTO'];
+  return <div className="mobile-network-article source-catalog" lang="en"><ProjectSources locale="en"
+    credits={<ul className="project-source-credits">{projectCredits.map(item=><li key={item.name}><strong>{item.name}</strong> - {item.description}</li>)}</ul>}
+    data={<ResourceList items={documentation.filter(item=>dataNames.includes(item.name))}/>}
+    libraries={<ResourceList items={projectTools}/>}
+    documentation={<>
+      <section className="documentation-group"><h4>Geographic data formats</h4><ResourceList items={documentation.filter(item=>['GeoJSON','GeoPackage'].includes(item.name))}/></section>
+      <section className="documentation-group"><h4>Arrow, geometry and memory</h4><ResourceList items={documentation.filter(item=>['Apache Arrow','Apache Arrow JavaScript','GeoArrow','MDN: transferable objects','MDN: cross-origin isolation'].includes(item.name))}/></section>
+      <section className="documentation-group"><h4>Rendering, workers and delivery</h4><ResourceList items={documentation.filter(item=>['MDN: hardware concurrency','Netlify Edge Functions API','Leaflet','OpenLayers','MapLibre'].includes(item.name)||typeof item.name!=='string')}/></section>
+      <section className="documentation-group"><h4>Articles and inspiration</h4><ResourceList items={documentation.filter(item=>['Kyle Barron','Kyle Barron: GeoParquet','Kyle Barron: GeoArrow'].includes(item.name))}/></section>
+    </>}/></div>;
+}

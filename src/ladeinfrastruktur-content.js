@@ -153,7 +153,8 @@ export default {
       {
         "type": "list",
         "items": [
-          "**Kirill Lisochenko** – Projektautor: Idee, Fragestellungen, Auswahl der Quellen und Kriterien, Arbeit mit den Daten, Prüfung der Ergebnisse und abschließende Entscheidungen.",
+          "**Kirill Lisochenko** – Projektautor: Idee, Fragestellungen, Auswahl der Quellen und Kriterien, Arbeit mit den Daten, Prüfung der Ergebnisse.",
+          "**Richard Sorge** - UI/UX-Design, Gestaltung der Seiten und Benutzeroberflächen der Anwendung sowie Entwicklung der Farbpaletten für das helle und dunkle Design.",
           "**OpenAI Codex** – Unterstützung bei Architektur, Implementierung, Optimierung, Tests und Dokumentation.",
           "**BNetzA, KBA und BKG** – Ausgangsdaten zur Ladeinfrastruktur, zum Fahrzeugbestand und zu den Gebietseinheiten.",
           "**OpenStreetMap contributors, Geofabrik und CARTO** – Straßendaten, regionale Auszüge und Kartengrundlage.",

@@ -552,7 +552,8 @@ export default {
       {
         "type": "list",
         "items": [
-          "**Kirill Lisochenko** - Idee und Umsetzung des Projekts: ursprüngliche Karte, analytische Fragestellungen, Recherche und Aufbereitung der Daten, Gestaltung, Prüfung von Oberfläche und Ergebnissen sowie die abschließenden Entscheidungen.",
+          "**Kirill Lisochenko** - Idee und Umsetzung des Projekts: ursprüngliche Karte, analytische Fragestellungen, Recherche und Aufbereitung der Daten, Gestaltung, Prüfung von Oberfläche und Ergebnissen.",
+          "**Richard Sorge** - UI/UX-Design, Gestaltung der Seiten und Benutzeroberflächen der Anwendung sowie Entwicklung der Farbpaletten für das helle und dunkle Design.",
           "**OpenAI Codex** - Unterstützung bei Architekturuntersuchungen, Prototypen, Datenaufbereitung, Implementierung, Tests und Dokumentation. Die Entscheidungen und die Abnahme lagen beim Projektverantwortlichen.",
           "**Statistische Ämter des Bundes und der Länder, Destatis, KBA und BKG** - amtliche Daten, Klassifikationen und methodische Unterlagen.",
           "**CARTO und OpenStreetMap contributors** - Grundkarten und kartografische Daten; die erforderlichen Quellenangaben erscheinen auch direkt auf der Karte.",

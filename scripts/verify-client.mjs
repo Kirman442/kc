@@ -38,6 +38,17 @@ for(const route of siteRoutes){
   window.document.querySelector('dialog').dispatchEvent(new window.KeyboardEvent('keydown',{key:'Escape',bubbles:true,cancelable:true}));await new Promise(resolve=>setTimeout(resolve,20));
   assert.equal(window.document.querySelector('iframe'),frame);assert.equal(window.document.body.style.overflow,'');
  }
+ if(['/projects/ladeinfrastruktur','/projects/unfallatlas','/projects/mobile-network'].includes(route.path)){
+  const sources=window.document.querySelector('.project-sources');
+  assert.equal(sources.children[1].tagName,'SECTION');
+  assert.ok(sources.children[1].textContent.includes('Kirill Lisochenko'));
+  const disclosures=[...sources.querySelectorAll('details')];
+  assert.equal(disclosures.length,3);assert.ok(disclosures.every(node=>!node.open));
+  assert.ok(!/final decisions|abschließenden? Entscheidungen/.test(sources.children[1].textContent));
+  if(route.lang==='de')assert.ok(sources.children[1].textContent.includes('Richard Sorge'));
+  assert.deepEqual(disclosures.map(node=>node.querySelector('summary').textContent),route.lang==='en'?['Data and methodology','Packages and libraries','Documentation and background reading']:['Daten und Methodik','Pakete und Bibliotheken','Dokumentation und weiterführende Materialien']);
+  for(const disclosure of disclosures){assert.ok(disclosure.querySelector('a'),'Empty sources group');disclosure.querySelector('summary').click();assert.equal(disclosure.open,true);disclosure.querySelector('summary').click();assert.equal(disclosure.open,false);}
+ }
  if(route.path==='/projects/energieatlas'){
   const link=window.document.querySelector('.energy-article>.appendix-reference a');
   const target=link.getAttribute('href').slice(1);link.click();await new Promise(resolve=>setTimeout(resolve,25));

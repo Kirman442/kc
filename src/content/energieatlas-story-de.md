@@ -107,7 +107,7 @@ Das grundlegende Format für die Bereitstellung der Analysedaten ist JSON. Admin
 
 ### Projektbeteiligte
 
-- **Kirill Lisochenko** - Idee, analytische Fragestellungen, Recherche und Datenaufbereitung, Entwicklung, Ergebnisprüfung und abschließende Entscheidungen.
+- **Kirill Lisochenko** - Idee, analytische Fragestellungen, Recherche und Datenaufbereitung, Entwicklung, Ergebnisprüfung.
 - **Richard Sorge** - UI/UX-Design, Gestaltung der Seiten und Benutzeroberflächen der Anwendung sowie Entwicklung der Farbpaletten für das helle und dunkle Design.
 - **OpenAI Codex** - Unterstützung bei Architekturfragen, Datenaufbereitung, Umsetzung, Tests und Dokumentation.
 - **Datenanbieter und Open-Source-Communitys** - die nachfolgend aufgeführten Datensätze, methodischen Unterlagen und Werkzeuge.
